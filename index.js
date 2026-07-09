@@ -8,11 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".template-btn");
   const iframe = document.getElementById("live-viewport");
   const urlSlug = document.getElementById("url-slug");
-  const loader = document.getElementById("preview-loader"); // Grab the loader container
+  const loader = document.getElementById("preview-loader");
   
   let loadTimeout;
 
-  function loadTemplate(key, isDefaultLoad = false) {
+  // Reusable error router helper
+  function triggerError(codeString, slugString) {
+    loader.classList.remove("show");
+    iframe.src = `error.html?code=${codeString}`;
+    urlSlug.textContent = `error.${slugString}`;
+  }
+
+  async function loadTemplate(key, isDefaultLoad = false) {
     clearTimeout(loadTimeout);
 
     if (isDefaultLoad) {
@@ -24,35 +31,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const targetWebsiteUrl = templateUrls[key];
 
     if (targetWebsiteUrl) {
-      // 1. TRIGGER THE LOADING SCREEN INSTANTLY BEFORE THE NETWORK HIT
       loader.classList.add("show");
-      
       urlSlug.textContent = key + ".foliohub.dev";
       let hasLoaded = false;
 
+      // --- CRITICAL CATCH BLOCK 1: HTTP STATUS CODES & OFFLINE STATES ---
+      try {
+        const response = await fetch(targetWebsiteUrl, { method: 'GET', cache: 'no-store' });
+
+        if (response.status === 404) {
+          triggerError("404", "not-found");
+          return; 
+        }
+
+        if (response.status >= 500) {
+          triggerError("500", "server-crash");
+          return;
+        }
+      } catch (networkError) {
+        // If the user's internet is out or DNS completely fails to resolve
+        if (!navigator.onLine) {
+          triggerError("offline", "network-unreachable");
+          return;
+        }
+        // Otherwise, allow it to fall back to the frame connection checker below
+      }
+
+      // --- CRITICAL CATCH BLOCK 2: IFRAME RENDERING HANGS/TIMEOUTS ---
       iframe.onload = () => {
         hasLoaded = true;
-        // 2. DISMISS THE LOADER SCREEN THE INSTANT THE SITE IS READY
         loader.classList.remove("show");
       };
 
       iframe.src = targetWebsiteUrl;
 
-      // Timeout safety tracker
+      // Start the backup global countdown timer
       loadTimeout = setTimeout(() => {
         if (!hasLoaded) {
-          loader.classList.remove("show"); // Hide loader so error can show
-          iframe.src = "error.html";
-          urlSlug.textContent = "error.network-timeout";
+          triggerError("timeout", "network-timeout");
         }
-      }, 5000);
+      }, 6000); // 6 seconds backup allowance
     }
   }
 
-  // Initial Startup Run
+  // Initial Startup
   loadTemplate(null, true);
 
-  // Button Event Listeners
+  // Click Router Loops
   buttons.forEach(button => {
     button.addEventListener("click", () => {
       buttons.forEach(btn => btn.classList.remove("active"));
@@ -63,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
 
 // --- SPLASH ENGINE LAUNCH CONTROLLER ---
 const curtain = document.getElementById("welcome-curtain");

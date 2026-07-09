@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <title>System Error Handler</title>
     <style>
       body {
         background-color: #020617;
@@ -14,29 +16,59 @@
         text-align: center;
       }
       .error-container {
-        max-width: 400px;
+        max-width: 440px;
         padding: 24px;
       }
       .icon {
-        font-size: 48px;
+        font-size: 56px;
         margin-bottom: 16px;
       }
       h1 {
         color: #ffffff;
-        font-size: 20px;
-        margin-bottom: 8px;
+        font-size: 22px;
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
       }
       p {
         font-size: 14px;
-        line-height: 1.5;
+        line-height: 1.6;
+        color: #64748b;
       }
     </style>
   </head>
   <body>
     <div class="error-container">
-      <div class="icon">📡</div>
-      <h1>Template Temporarily Offline</h1>
-      <p>We are having trouble reaching this preview link. The template deployment might still be building on Vercel. Please select another style or try again shortly.</p>
+      <div id="error-icon" class="icon">⚠️</div>
+      <h1 id="error-title">An Error Occurred</h1>
+      <p id="error-desc">We encountered an unexpected problem trying to open this template preview. Please try again shortly.</p>
     </div>
+
+    <script>
+      // Parse the URL to see what kind of error occurred
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorType = urlParams.get('code');
+
+      const iconEl = document.getElementById('error-icon');
+      const titleEl = document.getElementById('error-title');
+      const descEl = document.getElementById('error-desc');
+
+      if (errorType === '404') {
+        iconEl.textContent = '🔍';
+        titleEl.textContent = 'Template Not Found (404)';
+        descEl.textContent = 'The requested design template layout could not be found. The production deployment link might be broken or still building on Vercel.';
+      } else if (errorType === '500') {
+        iconEl.textContent = '💥';
+        titleEl.textContent = 'Server Error (500)';
+        descEl.textContent = 'The server hosting this portfolio template encountered an internal error. Please choose an alternative design while the build recovers.';
+      } else if (errorType === 'timeout') {
+        iconEl.textContent = '⏳';
+        titleEl.textContent = 'Connection Timeout';
+        descEl.textContent = 'The network connection timed out before the template could load completely. This usually happens on slow networks or cold server boots.';
+      } else if (errorType === 'offline') {
+        iconEl.textContent = '📡';
+        titleEl.textContent = 'Network Unreachable';
+        descEl.textContent = 'Unable to establish a link to the remote Vercel domain. Please check your internet connectivity or firewall rules.';
+      }
+    </script>
   </body>
 </html>
