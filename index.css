@@ -1,0 +1,372 @@
+/* Core Layout Defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #020617; /* Dark slate 950 */
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 320px;
+  background-color: #0f172a; /* Slate 900 */
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.logo-area h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #34d399; /* Emerald 400 */
+}
+
+.logo-area p {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.template-selector {
+  margin-top: 40px;
+  flex-grow: 1;
+}
+
+.template-selector h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+/* Template Option Buttons */
+.template-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  text-align: left;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.template-btn .btn-title {
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.template-btn .btn-desc {
+  color: #475569;
+  font-size: 11px;
+}
+
+.template-btn:hover {
+  background-color: #1e293b;
+}
+
+/* Active Highlight Button State */
+.template-btn.active {
+  background-color: #1e293b;
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.template-btn.active .btn-title {
+  color: #34d399;
+}
+
+/* CTA Footer Link */
+.cta-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: #020617;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  transition: all 0.2s;
+}
+
+.cta-link:hover {
+  border-color: #34d399;
+  color: #34d399;
+}
+
+/* Right Container Canvas */
+.preview-container {
+  flex-grow: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: #020617;
+}
+
+/* Window Screen Frame header Chrome */
+.viewport-header {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-bottom: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.red { background-color: #ef4444; }
+.dot.yellow { background-color: #f59e0b; }
+.dot.green { background-color: #10b981; }
+
+.address-bar {
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 4px 16px;
+  flex-grow: 1;
+  max-width: 500px;
+  font-size: 11px;
+  color: #64748b;
+  font: monospace;
+}
+
+.address-bar strong {
+  color: #94a3b8;
+}
+
+/* Direct Sandbox Iframe */
+#live-viewport {
+  width: 100%;
+  flex-grow: 1;
+  border: 1px solid #1e293b;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: #ffffff; /* Gives templates an isolated white background default */
+}
+
+/* --- RESPONSIVE MOBILE OVERRIDES --- */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Stacks sidebar on top of the preview canvas */
+  }
+
+  /* 1. Transform Sidebar into a Top Bar Navigation */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+    gap: 12px;
+  }
+
+  .logo-area p {
+    display: none; /* Hide the subtitle on small screens to save space */
+  }
+
+  /* 2. Turn Template List into a Horizontal Scrollable Menu */
+  .template-selector {
+    margin-top: 12px;
+  }
+
+  .template-selector h2 {
+    display: none; /* Hide the category label */
+  }
+
+  .template-selector {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Enables horizontal swiping */
+    white-space: nowrap;
+    padding-bottom: 4px;
+    /* Hide scrollbars for a clean look */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .template-selector::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 3. Redesign Buttons into Compact Horizontal Badges */
+  .template-btn {
+    width: auto;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 14px;
+    margin-bottom: 0;
+    flex-shrink: 0; /* Prevents buttons from squeezing together */
+    background-color: #020617;
+    border: 1px solid #1e293b;
+  }
+
+  .template-btn .btn-title {
+    font-size: 13px;
+  }
+
+  .template-btn .btn-desc {
+    display: none; /* Hide descriptions on mobile to keep it tight */
+  }
+
+  /* Hide the footer link completely on mobile to maximize viewport area */
+  .sidebar-footer {
+    display: none;
+  }
+
+  /* 4. Optimize the Live Viewport Container to fill the screen */
+  .preview-container {
+    padding: 12px;
+    height: calc(100vh - 120px); /* Gives the rest of the height to the preview */
+  }
+
+  /* Shrink the address bar padding slightly for tight widths */
+  .viewport-header {
+    padding: 8px 12px;
+    gap: 12px;
+  }
+
+  .address-bar {
+    padding: 3px 10px;
+  }
+}
+
+
+
+/* --- WELCOME SPLASH CURTAIN OVERLAY --- */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 6, 23, 0.85); /* Deep slate tint */
+  backdrop-filter: blur(12px); /* High-end edge diffusion */
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+}
+
+/* Hidden Class Modifier */
+.welcome-overlay.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Interactive Center Card Engine */
+.welcome-card {
+  background-color: #0f172a; /* Slate 900 */
+  border: 1px solid #1e293b;
+  max-width: 480px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 40px 5px rgba(52, 211, 153, 0.05);
+}
+
+.welcome-card .badge {
+  display: inline-block;
+  background-color: rgba(52, 211, 153, 0.1);
+  color: #34d399;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.welcome-card h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.welcome-card p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Internal Value Feature Tags */
+.feature-pills {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.feature-pills span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  background-color: #020617;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #1e293b;
+}
+
+/* Master Primary Call To Action Trigger */
+.enter-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #34d399; /* Radiant Emerald Core */
+  color: #020617;
+  border: none;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.enter-btn:hover {
+  background-color: #10b981;
+  transform: translateY(-1px);
+}
+
+.enter-btn:active {
+  transform: translateY(1px);
+}
