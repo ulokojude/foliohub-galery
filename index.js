@@ -1,15 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Splash Screen Controller
-  const curtain = document.getElementById("welcome-curtain");
-  const enterBtn = document.getElementById("enter-gallery-btn");
-
-  if (curtain && enterBtn) {
-    enterBtn.addEventListener("click", () => {
-      curtain.classList.add("dismissed");
-    });
-  }
-
-  // 2. Production Links Registry
   const templateUrls = {
     "minimalist": "https://your-live-minimalist-url.vercel.app",
     "terminal": "https://your-live-terminal-url.vercel.app",
@@ -19,14 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".template-btn");
   const iframe = document.getElementById("live-viewport");
   const urlSlug = document.getElementById("url-slug");
+  const loader = document.getElementById("preview-loader"); // Grab the loader container
   
   let loadTimeout;
 
-  // 3. MASTER ROUTER FUNCTION
   function loadTemplate(key, isDefaultLoad = false) {
     clearTimeout(loadTimeout);
 
-    // If it's the home load, just render the local intro page without hitting timeouts
     if (isDefaultLoad) {
       iframe.src = "intro.html";
       urlSlug.textContent = "welcome.foliohub.dev";
@@ -36,18 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const targetWebsiteUrl = templateUrls[key];
 
     if (targetWebsiteUrl) {
+      // 1. TRIGGER THE LOADING SCREEN INSTANTLY BEFORE THE NETWORK HIT
+      loader.classList.add("show");
+      
       urlSlug.textContent = key + ".foliohub.dev";
       let hasLoaded = false;
 
       iframe.onload = () => {
         hasLoaded = true;
+        // 2. DISMISS THE LOADER SCREEN THE INSTANT THE SITE IS READY
+        loader.classList.remove("show");
       };
 
       iframe.src = targetWebsiteUrl;
 
-      // Timeout safety check for live buttons
+      // Timeout safety tracker
       loadTimeout = setTimeout(() => {
         if (!hasLoaded) {
+          loader.classList.remove("show"); // Hide loader so error can show
           iframe.src = "error.html";
           urlSlug.textContent = "error.network-timeout";
         }
@@ -55,10 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 4. ACTION A: Load your beautiful responsive intro instantly on startup
+  // Initial Startup Run
   loadTemplate(null, true);
 
-  // 5. ACTION B: Run whenever a user clicks a sidebar choice tag button
+  // Button Event Listeners
   buttons.forEach(button => {
     button.addEventListener("click", () => {
       buttons.forEach(btn => btn.classList.remove("active"));
@@ -69,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 // --- SPLASH ENGINE LAUNCH CONTROLLER ---
 const curtain = document.getElementById("welcome-curtain");

@@ -69,9 +69,18 @@
       </div>
     </div>
     
-    <!-- This iframe injects the templates dynamically -->
-    <!-- Inside your index.html canvas panel wrapper, swap out the standard fallback iframe with this -->
-    <iframe id="live-viewport" src="https://portfolio-ulokojude.vercel.app/" title="Portfolio Live View"></iframe>
+    <div class="viewport-container">
+  
+      <!-- The Loading Spinner Screen Overlayer -->
+      <div id="preview-loader" class="iframe-loader">
+        <div class="spinner"></div>
+        <div class="loader-text">Connecting to Vercel...</div>
+      </div>
+
+      <!-- Your existing Iframe -->
+      <iframe id="live-viewport" src="intro.html" title="Portfolio Live View"></iframe>
+
+    </div>
   </main>
 
   <script src="index.js"></script>
