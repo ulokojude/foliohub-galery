@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateUrls = {
-    "minimalist": "https://your-liv.com",
-    "terminal": "https://your-live-terminal-url.vercel.app",
-    "neo-brutalism": "https://your-live-brutalism-url.vercel.app"
+    "minimalist": "https://google.com",
+    "name": "url"
   };
 
   const buttons = document.querySelectorAll(".template-btn");
