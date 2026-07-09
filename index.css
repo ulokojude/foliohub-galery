@@ -397,9 +397,7 @@ body {
 #live-viewport {
   width: 100%;
   height: 100%;
-  border: none;       
-  
-  /* ADD/UPDATE THESE: */
+  border: none;
   display: block;       /* Forces the iframe to behave like a block element, killing baseline gaps */
   vertical-align: bottom; /* Secondary insurance against native inline vertical alignment bugs */
   margin-bottom: -1px;  /* The ultimate trick: pushes the frame down by 1px to hide any sub-pixel bleeding */
