@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // it means Vercel's native 404 error page has hijacked the iframe window.
       loadTimeout = setTimeout(() => {
         triggerError("404", "deployment-not-found");
-      }, 3500);
+      }, 1700);
     }
   }
 
