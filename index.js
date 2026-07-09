@@ -52,13 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       } catch (networkError) {
-        // If the user is completely offline
         if (!navigator.onLine) {
           triggerError("offline", "network-unreachable");
           return;
         }
-        // If CORS blocks the fetch because a domain has been deleted,
-        // it slips straight past and gets caught by Layer 2 and Layer 3 below.
       }
 
       // --- LAYER 2: IFRAME LOAD INTERCEPTION ---
@@ -66,38 +63,37 @@ document.addEventListener("DOMContentLoaded", () => {
         hasLoaded = true;
         
         try {
-          // If the page loads Vercel's internal "Not Found" error layout template
           if (iframe.contentDocument && iframe.contentDocument.title.includes("Not Found")) {
             triggerError("404", "deleted-deployment");
             return;
           }
-          
           loader.classList.remove("show");
         } catch (crossOriginError) {
-          // Cross-origin errors are completely normal for successfully loaded live external domains
           loader.classList.remove("show");
         }
       };
 
-      // Change the source to kick off the browser connection request
       iframe.src = targetWebsiteUrl;
 
-      // --- LAYER 3: TIMEOUT SAFETY SHIELD (Catches DEPLOYMENT_NOT_FOUND pages) ---
+      // --- LAYER 3: TIMEOUT SAFETY SHIELD ---
       loadTimeout = setTimeout(() => {
         if (!hasLoaded) {
           triggerError("404", "deployment-not-found");
         }
-      }, 5000); // Strict 5-second cutoff window
+      }, 5000);
     }
   }
 
-  // 4. RUN SYSTEM INITIALIZATION ON STARTUP
+  // 4. RUN SYSTEM INITIALIZATION ON STARTUP (Keeps all nav buttons neutral!)
   loadTemplate(null, true);
 
   // 5. NAVIGATION SWITCHER INTERACTION LOOPS
   buttons.forEach(button => {
     button.addEventListener("click", () => {
+      // Clear out the active state from all buttons completely first
       buttons.forEach(btn => btn.classList.remove("active"));
+      
+      // ONLY add the active class to the button that was explicitly clicked!
       button.classList.add("active");
 
       const clickedKey = button.getAttribute("data-template");
