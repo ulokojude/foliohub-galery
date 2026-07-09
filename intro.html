@@ -29,31 +29,35 @@
         text-align: center;
       }
 
-      .icon-badge {
-        font-size: 40px;
-        margin-bottom: 16px;
-        display: inline-block;
-        animation: float 3s ease-in-out infinite;
+      /* --- BRAND WORDMARK STYLING --- */
+      .brand-title {
+        font-size: 48px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin-bottom: 4px;
+        text-transform: lowercase; /* Gives it a clean, modern software look */
       }
 
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
+      .brand-title span {
+        color: #34d399; /* Highlights the 'hub' part in signature emerald */
       }
 
       h1 {
-        font-size: 32px;
-        font-weight: 800;
-        background: linear-gradient(to right, #34d399, #60a5fa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 16px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin-bottom: 20px;
+        letter-spacing: -0.01em;
       }
 
       p.tagline {
-        color: #94a3b8;
-        font-size: 16px;
-        margin-bottom: 32px;
+        color: #64748b;
+        font-size: 15px;
+        margin-bottom: 40px;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* Features Grid Grid */
@@ -95,8 +99,11 @@
         body {
           padding: 24px 16px;
         }
+        .brand-title {
+          font-size: 38px;
+        }
         h1 {
-          font-size: 24px;
+          font-size: 18px;
         }
         p.tagline {
           font-size: 14px;
@@ -111,15 +118,18 @@
   <body>
 
     <div class="container">
-      <div class="icon-badge">🚀</div>
+      
+      <div class="brand-title">folio<span>hub</span></div>
+      
       <h1>The Multi-Tenant Portfolio Engine</h1>
+      
       <p class="tagline">
-        Foliohub is an open-source SaaS architecture that separates your core professional profile datasets from the presentation UI rendering layers.
+        An open-source SaaS architecture that keeps your professional profile data completely separated from the visual design templates.
       </p>
 
       <div class="features-grid">
         <div class="feature-card">
-          <h3>🎨 Decoupled Design</h3>
+          <h3>🎨 Separate Layouts</h3>
           <p>Change themes instantly without touching, editing, or re-copying your portfolio content text files.</p>
         </div>
         <div class="feature-card">
@@ -137,8 +147,7 @@
       </div>
 
       <div class="footer-note">
-        Select a layout style from the control 
-        panel menu to view a template variant in action.
+        👈 Select a layout style from the control panel menu to view a template variant in action.
       </div>
     </div>
 
