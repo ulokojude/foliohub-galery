@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "editorial": "https://folio-temp.vercel.app/editorial.html",
     "noir": "https://folio-temp.vercel.app/noir.html",
     "retro-desktop": "https://folio-temp.vercel.app/retro-desktop.html",
-    "schematic": "https://folio-temp.vercel.app/schematichtml",
+    "schematic": "https://folio-temp.vercel.app/schematic.html",
     "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark.html",
   };
 
