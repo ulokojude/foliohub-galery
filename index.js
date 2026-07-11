@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateUrls = {
-    "aurora": "https://folio-temp.vercel.app/aurora",
-    "brutalist": "https://folio-temp.vercel.app/brutalist",
-    "cyber-glow": "https://folio-temp.vercel.app/cyber-glow",
-    "editorial": "https://folio-temp.vercel.app/editorial",
-    "noir": "https://folio-temp.vercel.app/noir",
-    "retro-desktop": "https://folio-temp.vercel.app/retro-desktop",
-    "schematic": "https://folio-temp.vercel.app/schematic",
-    "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark",
+    "aurora": "https://folio-temp.vercel.app/aurora.html",
+    "brutalist": "https://folio-temp.vercel.app/brutalist.html",
+    "cyber-glow": "https://folio-temp.vercel.app/cyber-glow.html",
+    "editorial": "https://folio-temp.vercel.app/editorial.html",
+    "noir": "https://folio-temp.vercel.app/noir.html",
+    "retro-desktop": "https://folio-temp.vercel.app/retro-desktop.html",
+    "schematic": "https://folio-temp.vercel.app/schematichtml",
+    "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark.html",
   };
 
   const buttons = document.querySelectorAll(".template-btn");
