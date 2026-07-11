@@ -1,88 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foliohub Template Gallery</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foliohub Template Gallery</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
 
-  <!-- Interactive Ambient Welcome Curtain -->
-  <div id="welcome-curtain" class="welcome-overlay">
-    <div class="welcome-card">
-      <div class="badge">✨ Live Showcase</div>
-      <h1>Welcome to the Foliohub Sandbox</h1>
-      <p>
-        Discover production-ready, 
-        ultra-optimized portfolios 
-        driven by our decoupled data engine. 
-        Select a framework profile style below to 
-        preview live layout systems in real-time.
-      </p>
+    <!-- Interactive Ambient Welcome Curtain -->
+    <div id="welcome-curtain" class="welcome-overlay">
+      <div class="welcome-card">
+        <div class="badge">✨ Live Showcase</div>
+        <h1>Welcome to the Foliohub Sandbox</h1>
+        <p>
+          Discover production-ready, 
+          ultra-optimized portfolios 
+          driven by our decoupled data engine. 
+          Select a framework profile style below to 
+          preview live layout systems in real-time.
+        </p>
+        
+        <div class="feature-pills">
+          <span>⚡ Zero-Config</span>
+          <span>📱 Fully Responsive</span>
+          <span>🎨 Adaptive Themes</span>
+        </div>
+
+        <button id="enter-gallery-btn" class="enter-btn">
+          <span>Explore Live Templates</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Left Sidebar Panel: Navigation -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <h1>Foliohub</h1>
+        <p>Template Live Showcase</p>
+      </div>
+
+      <nav class="template-selector">
+        <h2>Select a Layout Style</h2>
+        
+        <!-- Template Buttons -->
+
+        <button class="template-btn" data-template="aurora">
+          <span class="btn-title">Aurora</span>
+        </button>
+
+        <button class="template-btn" data-template="brutalist">
+          <span class="btn-title">Brutalist</span>
+        </button>
+
+        <button class="template-btn" data-template="cyber-glow">
+          <span class="btn-title">Cyber-glow</span>
+        </button>
+
+        <button class="template-btn" data-template="editorial">
+          <span class="btn-title">Editorial</span>
+        </button>
+
+        <button class="template-btn" data-template="noir">
+          <span class="btn-title">Noir</span>
+        </button>
+
+        <button class="template-btn" data-template="retro-desktop">
+          <span class="btn-title">Retro Desktop</span>
+        </button>
+
+        <button class="template-btn" data-template="schematic">
+          <span class="btn-title">Schematic</span>
+        </button>
+
+        <button class="template-btn" data-template="SysOps_Dark">
+          <span class="btn-title">SysOps Dark</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="https://github.com/ulokojude/Foliohub" target="_blank" class="cta-link">Back to Core Repo</a>
+      </div>
+    </aside>
+
+    <!-- Right Side Panel: Live Monitor Canvas Viewport -->
+    <main class="preview-container">
+      <div class="viewport-header">
+        <div class="window-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="address-bar">
+          <span>foliohub.dev/demo/<strong id="url-slug">minimalist</strong></span>
+        </div>
+      </div>
       
-      <div class="feature-pills">
-        <span>⚡ Zero-Config</span>
-        <span>📱 Fully Responsive</span>
-        <span>🎨 Adaptive Themes</span>
-      </div>
-
-      <button id="enter-gallery-btn" class="enter-btn">
-        <span>Explore Live Templates</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Left Sidebar Panel: Navigation -->
-  <aside class="sidebar">
-    <div class="logo-area">
-      <h1>Foliohub</h1>
-      <p>Template Live Showcase</p>
-    </div>
-
-    <nav class="template-selector">
-      <h2>Select a Layout Style</h2>
-      
-      <!-- Template Buttons -->
-
-      <button class="template-btn" data-template="minimalist">
-        <span class="btn-title">Minimalist Professional</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-footer">
-      <a href="https://github.com/ulokojude/Foliohub" target="_blank" class="cta-link">Back to Core Repo</a>
-    </div>
-  </aside>
-
-  <!-- Right Side Panel: Live Monitor Canvas Viewport -->
-  <main class="preview-container">
-    <div class="viewport-header">
-      <div class="window-dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-      <div class="address-bar">
-        <span>foliohub.dev/demo/<strong id="url-slug">minimalist</strong></span>
-      </div>
-    </div>
+      <div class="viewport-container">
     
-    <div class="viewport-container">
-  
-      <!-- The Loading Spinner Screen Overlayer -->
-      <div id="preview-loader" class="iframe-loader">
-        <div class="spinner"></div>
-        <div class="loader-text">Connecting to Vercel...</div>
+        <!-- The Loading Spinner Screen Overlayer -->
+        <div id="preview-loader" class="iframe-loader">
+          <div class="spinner"></div>
+          <div class="loader-text">Connecting to Vercel...</div>
+        </div>
+
+        <!-- Your existing Iframe -->
+        <iframe id="live-viewport" src="intro.html" title="Portfolio Live View"></iframe>
+
       </div>
+    </main>
 
-      <!-- Your existing Iframe -->
-      <iframe id="live-viewport" src="intro.html" title="Portfolio Live View"></iframe>
-
-    </div>
-  </main>
-
-  <script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>

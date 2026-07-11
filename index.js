@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateUrls = {
-    "minimalist": "https://your-live-minimalist-url.vercel.app",
-    "terminal": "https://your-live-terminal-url.vercel.app",
-    "neo-brutalism": "https://your-live-brutalism-url.vercel.app"
+    "aurora": "https://folio-temp.vercel.app/aurora",
+    "brutalist": "https://folio-temp.vercel.app/brutalist",
+    "cyber-glow": "https://folio-temp.vercel.app/cyber-glow",
+    "editorial": "https://folio-temp.vercel.app/editorial",
+    "noir": "https://folio-temp.vercel.app/noir",
+    "retro-desktop": "https://folio-temp.vercel.app/retro-desktop",
+    "schematic": "https://folio-temp.vercel.app/schematic",
+    "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark",
   };
 
   const buttons = document.querySelectorAll(".template-btn");
@@ -51,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // it means Vercel's native 404 error page has hijacked the iframe window.
       loadTimeout = setTimeout(() => {
         triggerError("404", "deployment-not-found");
-      }, 800);
+      }, 6000);
     }
   }
 
