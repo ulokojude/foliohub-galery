@@ -43,12 +43,31 @@
             compilers and sandboxed framework configurations.
           </p>
 
-          <a href="index.html" id="rev"><- back</a>
+          <a href="index.html" class="back-btn-minimal">
+            <span class="arrow">&larr;</span> Back
+          </a>
           <style>
-            #rev {
+            .back-btn-minimal {
+              display: inline-flex;
+              align-items: center;
+              color: yellowgreen;
               text-decoration: none;
-              cursor: pointer;
-              color: greenyellow;
+              font-family: system-ui, sans-serif;
+              font-size: 16px;
+              font-weight: 500;
+            }
+
+            .back-btn-minimal .arrow {
+              margin-right: 6px;
+              transition: transform 0.2s ease;
+            }
+
+            .back-btn-minimal:hover {
+              color: yellow;
+            }
+
+            .back-btn-minimal:hover .arrow {
+              transform: translateX(-4px); /* Animates the arrow pointing backward */
             }
           </style>
         </div>
