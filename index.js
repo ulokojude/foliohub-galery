@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "schematic": "https://folio-temp.vercel.app/schematic.html",
     "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark.html",
     "vapowave": "https://folio-temp.vercel.app/vapowave.html",
+    "bento": "https://folio-temp.vercel.app/bento.html",
   };
 
   const buttons = document.querySelectorAll(".template-btn");
