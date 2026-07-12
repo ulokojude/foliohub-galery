@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Layout Feedback // Foliohub</title>
+    <!-- Tailwind CSS CDN Platform Layer -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom reverse-row rating engine logic styled with Tailwind hooks */
+      .star-pool {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+      .star-pool input:checked ~ label,
+      .star-pool label:hover,
+      .star-pool label:hover ~ label {
+        color: #f59e0b; /* Tailwind amber-500 */
+      }
+    </style>
+  </head>
+  <body class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8">
+
+    <!-- Main Multi-Column Frame Container -->
+    <main class="w-full max-w-4xl bg-white border border-slate-200 shadow-xl rounded-3xl overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[580px]">
+      
+      <!-- LEFT PANEL: Dynamic Branding & Context (Spans 5 columns on large screens) -->
+      <section class="md:col-span-5 bg-slate-900 p-8 flex flex-col justify-between text-white relative overflow-hidden">
+        <!-- Ambient Backlighting glow effect inside dark card -->
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-500/10 blur-3xl rounded-full"></div>
+        
+        <div>
+          <span class="inline-flex items-center rounded-md bg-white/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-blue-400">
+            Foliohub Labs
+          </span>
+          <h1 class="mt-6 text-2xl font-bold tracking-tight text-white md:text-3xl">
+            Visitor Review
+          </h1>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+            Your engineering insights and critique notes 
+            directly optimize our active frontend layout 
+            compilers and sandboxed framework configurations.
+          </p>
+
+          <a href="index.html" id="rev"><- back</a>
+          <style>
+            #rev {
+              text-decoration: none;
+              cursor: pointer;
+              color: greenyellow;
+            }
+          </style>
+        </div>
+
+        <!-- Quick Metrics Indicator inside left shelf panel -->
+        <div class="mt-8 pt-6 border-t border-slate-800 hidden md:block">
+          <div class="flex items-center gap-3">
+            <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span class="text-xs font-mono tracking-wider text-slate-400 uppercase">Spreadsheet Pipeline Live</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Compact Horizontal/Vertical Input Fields (Spans 7 columns on large screens) -->
+      <section class="md:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
+        <form id="appReviewForm" class="space-y-4">
+          
+          <!-- SIDE-BY-SIDE GRID FIELD LAYER FOR NAME AND BLUEPRINT -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- TARGET BLUEPRINT SELECTION -->
+            <div>
+              <label for="reviewTemplate" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                Target Blueprint
+              </label>
+              <div class="mt-1.5">
+                <select id="reviewTemplate" name="template" required 
+                        class="block w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition duration-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 cursor-pointer">
+                  <option value="aurora">aurora</option>
+                  <option value="bento">Bento</option>
+                  <option value="brutalist">brutalist</option>
+                  <option value="cyber-glow">cyber-glow</option>
+                  <option value="editorial">editorial</option>
+                  <option value="noir">noir</option>
+                  <option value="retro-desktop">retro-desktop</option>
+                  <option value="schematic">schematic</option>
+                  <option value="sysops dark">sysops dark</option>
+                  <option value="vapowave">vapowave</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- IDENTITY FIELD -->
+            <div>
+              <label for="reviewName" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                Your Identity
+              </label>
+              <div class="mt-1.5">
+                <input type="text" id="reviewName" name="name" placeholder="Name or alias" required
+                      class="block w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10">
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE DESIGN METRIC (STARS) -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600">
+              Design Metric
+            </label>
+            <div class="mt-1.5 flex items-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-1.5">
+              <div class="star-pool gap-1.5">
+                <input type="radio" id="star5" name="rating" value="5" class="hidden" required><label for="star5" title="5 Stars" class="text-2xl text-slate-300 cursor-pointer transition-all duration-100 hover:scale-110">★</label>
+                <input type="radio" id="star4" name="rating" value="4" class="hidden"><label for="star4" title="4 Stars" class="text-2xl text-slate-300 cursor-pointer transition-all duration-100 hover:scale-110">★</label>
+                <input type="radio" id="star3" name="rating" value="3" class="hidden"><label for="star3" title="3 Stars" class="text-2xl text-slate-300 cursor-pointer transition-all duration-100 hover:scale-110">★</label>
+                <input type="radio" id="star2" name="rating" value="2" class="hidden"><label for="star2" title="2 Stars" class="text-2xl text-slate-300 cursor-pointer transition-all duration-100 hover:scale-110">★</label>
+                <input type="radio" id="star1" name="rating" value="1" class="hidden"><label for="star1" title="1 Star" class="text-2xl text-slate-300 cursor-pointer transition-all duration-100 hover:scale-110">★</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- CRITIQUE TEXT BOX -->
+          <div>
+            <label for="reviewText" class="block text-[11px] font-bold uppercase tracking-wider text-slate-600">
+              Critique Notes
+            </label>
+            <div class="mt-1.5">
+              <textarea id="reviewText" name="review" rows="4" placeholder="What do you think? Sugsted improvments or, appraisal for your selected template" required
+                        class="block w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 resize-none"></textarea>
+            </div>
+          </div>
+
+          <!-- TRANSACTION PROCESS TRIGGER -->
+          <div class="pt-2">
+            <button type="submit" id="submitBtn"
+                    class="flex w-full justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-150 hover:bg-slate-800 active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:bg-slate-400 disabled:cursor-not-allowed disabled:transform-none">
+              Submit Architecture Review
+            </button>
+          </div>
+        </form>
+
+        <!-- SYSTEM STATUS REPORT MESSAGE BOX -->
+        <div id="statusReport" class="mt-4 hidden text-center text-xs font-semibold p-3 rounded-xl border"></div>
+      </section>
+
+    </main>
+
+    <script>
+      document.getElementById('appReviewForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Paste your copied Web App macro deployment URL link here
+        const SCRIPT_API_URL = "https://script.google.com/macros/s/AKfycbwooYIv4FrXzWJTlh6XYOjHl6-saA4mtiRVL8SX5b9jpN-3z4KpEEjORS34yzrxb9Wr/exec";
+        const submitBtn = document.getElementById('submitBtn');
+        const statusReport = document.getElementById('statusReport');
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Transmitting Packet...";
+        statusReport.className = "mt-4 hidden text-center text-xs font-semibold p-3 rounded-xl border";
+
+        const selectedRating = document.querySelector('input[name="rating"]:checked')?.value || "0";
+
+        const dataPacket = {
+          template: document.getElementById('reviewTemplate').value,
+          name: document.getElementById('reviewName').value,
+          rating: parseInt(selectedRating),
+          review: document.getElementById('reviewText').value
+        };
+
+        try {
+          const response = await fetch(SCRIPT_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify(dataPacket)
+          });
+
+          const result = await response.json();
+
+          if (result.status === 'success') {
+            statusReport.innerText = "✓ Architecture logged successfully in Google Sheets.";
+            statusReport.className = "mt-4 text-center text-xs font-semibold p-3 rounded-xl border bg-emerald-50 text-emerald-600 border-emerald-200 block";
+            document.getElementById('appReviewForm').reset();
+          } else {
+            throw new Error(result.message);
+          }
+        } catch (err) {
+          console.error("API Pipeline Fault:", err);
+          statusReport.innerText = "⚠️ Transmission fault. Verify Google Web App macro link.";
+          statusReport.className = "mt-4 text-center text-xs font-semibold p-3 rounded-xl border bg-rose-50 text-rose-600 border-rose-200 block";
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Submit Architecture Review";
+        }
+      });
+    </script>
+
+  </body>
+</html>
+
+
