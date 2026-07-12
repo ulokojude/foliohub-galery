@@ -154,7 +154,7 @@
         const statusReport = document.getElementById('statusReport');
         
         submitBtn.disabled = true;
-        submitBtn.innerText = "Transmitting Packet...";
+        submitBtn.innerText = "Sending";
         statusReport.className = "mt-4 hidden text-center text-xs font-semibold p-3 rounded-xl border";
 
         const selectedRating = document.querySelector('input[name="rating"]:checked')?.value || "0";
@@ -184,7 +184,7 @@
           }
         } catch (err) {
           console.error("API Pipeline Fault:", err);
-          statusReport.innerText = "⚠️ Transmission fault. Verify Google Web App macro link.";
+          statusReport.innerText = "Not sent. Try again";
           statusReport.className = "mt-4 text-center text-xs font-semibold p-3 rounded-xl border bg-rose-50 text-rose-600 border-rose-200 block";
         } finally {
           submitBtn.disabled = false;
