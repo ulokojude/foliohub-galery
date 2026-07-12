@@ -195,7 +195,7 @@
           const result = await response.json();
 
           if (result.status === 'success') {
-            statusReport.innerText = "✓ Architecture logged successfully in Google Sheets.";
+            statusReport.innerText = "Sent successfully.";
             statusReport.className = "mt-4 text-center text-xs font-semibold p-3 rounded-xl border bg-emerald-50 text-emerald-600 border-emerald-200 block";
             document.getElementById('appReviewForm').reset();
           } else {
