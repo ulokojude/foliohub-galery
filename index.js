@@ -1,16 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const templateUrls = {
-    "aurora": "https://folio-temp.vercel.app/aurora.html",
-    "brutalist": "https://folio-temp.vercel.app/brutalist.html",
-    "cyber-glow": "https://folio-temp.vercel.app/cyber-glow.html",
-    "editorial": "https://folio-temp.vercel.app/editorial.html",
-    "noir": "https://folio-temp.vercel.app/noir.html",
-    "retro-desktop": "https://folio-temp.vercel.app/retro-desktop.html",
-    "schematic": "https://folio-temp.vercel.app/schematic.html",
-    "SysOps_Dark": "https://folio-temp.vercel.app/SysOps_Dark.html",
-    "vapowave": "https://folio-temp.vercel.app/vapowave.html",
-    "bento": "https://folio-temp.vercel.app/bento.html",
-  };
+  // --- SINGLE TEMPLATE STRING CONFIG ---
+  // This replaces the entire hardcoded dictionary!
+  const getTemplateUrl = (key) => `https://folio-temp.vercel.app/${key}.html`;
 
   const buttons = document.querySelectorAll(".template-btn");
   const iframe = document.getElementById("live-viewport");
@@ -27,10 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- THE CORS SAFETY BRIDGE ---
-  // Listen for the live templates to say "I am successfully alive!"
   window.addEventListener("message", (event) => {
     if (event.data === "foliohub-template-success") {
-      // The template is alive! Clear the countdown timer and hide the loader
       clearTimeout(loadTimeout);
       loader.classList.remove("show");
     }
@@ -45,17 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const targetWebsiteUrl = templateUrls[key];
+    // Dynamically build the target URL using our template string function
+    const targetWebsiteUrl = getTemplateUrl(key);
 
-    if (targetWebsiteUrl) {
+    if (key) {
       loader.classList.add("show");
-      urlSlug.textContent = key + ".foliohub.dev";
+      urlSlug.textContent = `${key}.foliohub.dev`;
 
       // Instantly start loading the target template
       iframe.src = targetWebsiteUrl;
 
-      // START THE COUNTDOWN: If the template doesn't ping us in 3.5 seconds,
-      // it means Vercel's native 404 error page has hijacked the iframe window.
+      // START THE COUNTDOWN
       loadTimeout = setTimeout(() => {
         triggerError("404", "deployment-not-found");
       }, 6000);
@@ -71,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       buttons.forEach(btn => btn.classList.remove("active"));
       button.classList.add("active");
 
+      // Grabs "aurora" from your data-template="aurora" attribute
       const clickedKey = button.getAttribute("data-template");
       loadTemplate(clickedKey, false);
     });
